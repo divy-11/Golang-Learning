@@ -10,12 +10,12 @@ func main() {
 	languages["PY"] = "Python"
 	languages["TS"] = "Typescript"
 	languages["RB"] = "Ruby"
-	fmt.Println("Shwoing :", languages)
+	fmt.Println("Showing :", languages)
 
 	delete(languages, "RB")
 	fmt.Println("After deleting RB :", languages)
 
-	for key, val := range languages {  //we can use _,val if we dont wanna print key
+	for key, val := range languages {  // we can use ( _ , val ) if we dont wanna print key
 		fmt.Printf("The key is %v and the value is %v \n", key, val)
 	}
 }
