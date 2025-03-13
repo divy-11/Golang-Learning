@@ -7,12 +7,13 @@ func main() {
 	deva := User{"Dev", "Dev@gmail.com", 20, true}
 	fmt.Println(deva)
 	fmt.Printf("Value: %+v\n", deva)
-	fmt.Printf("User is %v and is %v years old.", deva.Name, deva.age)
+	fmt.Printf("User is %v and is %v years old.", deva.Name, deva.Age)
 }
 
 type User struct {
 	Name   string
-	email  string
-	age    int
+	Email  string
+	Age    int
 	Active bool
+	//one int  this property wont be exportable as first alpha is small
 }
