@@ -6,8 +6,8 @@ import (
 	"net/http"
 )
 
+const url string = "https://lco.dev"
 func main() {
-	const url = "https://lco.dev"
 	resp, err := http.Get(url)
 	if err != nil {
 		panic(err)
