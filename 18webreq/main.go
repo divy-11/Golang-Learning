@@ -14,6 +14,7 @@ func main() {
 	}
 	fmt.Printf("Response is of type: %T\n", resp)
 	defer resp.Body.Close() //its our resp to close the connection in the end.
+	
 	contentBytes, err := io.ReadAll(resp.Body)
 	if err != nil {
 		panic(err)

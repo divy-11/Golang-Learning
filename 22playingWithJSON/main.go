@@ -6,7 +6,7 @@ import (
 )
 
 type course struct {
-	Name     string `json:"coursename"` //name changes in json data type
+	Name     string   `json:"coursename"` //name changes in json data type
 	Price    int
 	Website  string   `json:"platform"`
 	Password string   `json:"-"`              // - means i dont want this field to be shown

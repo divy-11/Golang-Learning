@@ -21,7 +21,7 @@ func main() {
 	fmt.Println(string(contentByte))
 
 	//different approach of stringifying
-	var respData strings.Builder
+	var respData strings.Builder   //**imp STRINGS MODULE
 	
 	byteLen, _ := respData.Write(contentByte) //saves the info in respData variable permanently.
 	fmt.Println(byteLen) //returns byte length

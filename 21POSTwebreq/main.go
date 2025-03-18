@@ -16,7 +16,7 @@ func main() {
 func reqUsingJSON() {
 	const myURL string = "http://localhost:8000/post"
 
-	contentJSON := strings.NewReader(`
+	contentJSON := strings.NewReader(` //simple way to make JSON data
 		{
 		"coursename":"Cohort 2.0",
 		"price":"2999",
@@ -39,7 +39,8 @@ func reqUsingFormData() {
 	data.Add("firstName", "Dev")
 	data.Add("Country", "India")
 	data.Add("Email", "devsangwan@gmail.com")
-
+	fmt.Println(data) 
+	fmt.Printf("Type of data is %T\n",data) //url.Values
 	resp, _ := http.PostForm(myURL, data)
 	defer resp.Body.Close()
 	content, _ := io.ReadAll(resp.Body)

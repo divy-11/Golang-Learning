@@ -22,6 +22,7 @@ func sumUp(val1 int, val2 int) int { /*this int represent type we are returing -
 //Pro Function -> can expect any number of inputs.
 func proAdder(val ...int) (int, string) {
 	tot := 0
+	fmt.Printf("The type of val : %T\n", val) //val is slice of int
 	for _, v := range val {
 		tot += v
 	}

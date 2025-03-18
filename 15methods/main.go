@@ -25,7 +25,7 @@ type User struct {
 }
 
 //Method
-func (u User) GetStatus() {
+func (u User) GetStatus() { // (input inputType)
 	fmt.Printf("Status of %v : %v \n", u.Name, u.Active)
 }
 
