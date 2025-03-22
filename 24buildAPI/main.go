@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"log"
 	"math/rand"
 	"net/http"
 	"strconv"
@@ -31,7 +32,19 @@ func (c *Course) isEmpty() bool {
 }
 
 func main() {
+	courses = append(courses, Course{CourseId: "3", CourseName: "Cohort 2.0", CoursePrice: 2999, Author: &Author{Fullname: "Harkirat", Website: "100x.dev.com"}})
+	courses = append(courses, Course{CourseId: "2", CourseName: "JS basics", CoursePrice: 299, Author: &Author{Fullname: "Harkirat", Website: "100x.dev.com"}})
 
+	r := mux.NewRouter()
+
+	r.HandleFunc("/", serveHome).Methods("GET")
+	r.HandleFunc("/courses", getAllCourses).Methods("GET")
+	r.HandleFunc("/course/{id}", getCoursebyId).Methods("GET")
+	r.HandleFunc("/course", addNewCourse).Methods("POST")
+	r.HandleFunc("/course/{id}", updateCourse).Methods("PUT")
+	r.HandleFunc("/course/{id}", deleteCourse).Methods("DELETE")
+
+	log.Fatal(http.ListenAndServe(":4000", r))
 }
 
 // Controllers --diff file
@@ -68,6 +81,13 @@ func addNewCourse(w http.ResponseWriter, r *http.Request) {
 	if course.isEmpty() {
 		json.NewEncoder(w).Encode("Please provide some data.")
 		return
+	}
+
+	for _, cor := range courses {
+		if cor.CourseName == course.CourseName {
+			json.NewEncoder(w).Encode("Course already exists.")
+			return
+		}
 	}
 
 	rand.Seed(time.Now().UnixNano()) //to generate random number
@@ -109,8 +129,8 @@ func deleteCourse(w http.ResponseWriter, r *http.Request) {
 	for index, course := range courses {
 		if course.CourseId == params["id"] {
 			courses = append(courses[:index], courses[index+1:]...) //removing
-			json.NewEncoder(w).Encode("Course Deleted.")
-			break
+			json.NewEncoder(w).Encode(course)
+			return
 		}
 	}
 	json.NewEncoder(w).Encode("No course with this id found.")
